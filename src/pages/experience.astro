@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Experience">
+	<section>
+		<h1>Experience</h1>
+		<div class="timeline">
+			<div class="timeline-item">
+				<div class="timeline-marker"></div>
+				<div class="timeline-content">
+					<h3>Position Title 1</h3>
+					<p class="company">Company Name</p>
+					<p class="date">Start Date - End Date</p>
+					<p>Description of your role, responsibilities, and achievements. Highlight key projects, technologies used, and impact.</p>
+				</div>
+			</div>
+			<div class="timeline-item">
+				<div class="timeline-marker"></div>
+				<div class="timeline-content">
+					<h3>Position Title 2</h3>
+					<p class="company">Company Name</p>
+					<p class="date">Start Date - End Date</p>
+					<p>Description of your role, responsibilities, and achievements.</p>
+				</div>
+			</div>
+			<div class="timeline-item">
+				<div class="timeline-marker"></div>
+				<div class="timeline-content">
+					<h3>Position Title 3</h3>
+					<p class="company">Company Name</p>
+					<p class="date">Start Date - End Date</p>
+					<p>Description of your role, responsibilities, and achievements.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<style>
+		.timeline {
+			position: relative;
+			max-width: 600px;
+			margin: 0 auto;
+		}
+
+		.timeline::before {
+			content: '';
+			position: absolute;
+			left: 30px;
+			top: 0;
+			bottom: 0;
+			width: 4px;
+			background: repeating-linear-gradient(
+				to bottom,
+				var(--border) 0px,
+				var(--border) 8px,
+				transparent 8px,
+				transparent 12px
+			);
+		}
+
+		.timeline-item {
+			position: relative;
+			margin-bottom: 2rem;
+			padding-left: 60px;
+		}
+
+		.timeline-content:hover {
+			box-shadow: 6px 6px 0 var(--fg);
+		}
+
+		.timeline-marker:hover {
+			background: var(--yellow);
+			transform: scale(1.1);
+		}
+
+		.timeline-marker {
+			position: absolute;
+			left: 18px;
+			top: 5px;
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			background: var(--aqua);
+			border: 3px solid var(--bg);
+			box-shadow: 0 0 0 2px var(--border);
+		}
+
+		.timeline-content {
+			background: var(--bg-soft);
+			padding: 1rem;
+			border-radius: 0;
+			border: 2px solid var(--border);
+			box-shadow: 4px 4px 0 var(--fg);
+			transition: box-shadow 0.2s;
+		}
+
+		.timeline-content h3 {
+			color: var(--yellow);
+			margin: 0 0 0.5rem 0;
+		}
+
+		.company {
+			color: var(--blue);
+			font-weight: bold;
+			margin: 0 0 0.25rem 0;
+		}
+
+		.date {
+			color: var(--fg-dim);
+			font-size: 0.9rem;
+			margin: 0 0 0.5rem 0;
+		}
+
+		.timeline-content p {
+			margin: 0;
+			color: var(--fg);
+		}
+
+		@media (max-width: 768px) {
+			.timeline::before {
+				left: 20px;
+			}
+
+			.timeline-item {
+				padding-left: 40px;
+			}
+
+			.timeline-marker {
+				left: 8px;
+				width: 20px;
+				height: 20px;
+			}
+		}
+	</style>
+</BaseLayout>
