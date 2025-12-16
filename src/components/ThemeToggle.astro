@@ -1,0 +1,64 @@
+---
+// ThemeToggle.astro
+---
+
+<button id="theme-toggle">Dark</button>
+
+<script>
+  const toggle = document.getElementById('theme-toggle') as HTMLButtonElement;
+  const html = document.documentElement;
+
+  // Function to get initial theme
+  const getInitialTheme = (): string => {
+    const stored = localStorage.getItem('theme');
+    if (stored) return stored;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  // Function to update text
+  const updateText = (theme: string) => {
+    if (toggle) {
+      toggle.textContent = theme === 'dark' ? 'Light' : 'Dark';
+    }
+  };
+
+  // Set initial theme
+  const initialTheme = getInitialTheme();
+  html.setAttribute('data-theme', initialTheme);
+  updateText(initialTheme);
+
+  // Toggle function
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const newTheme = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateText(newTheme);
+    });
+  }
+</script>
+
+<style>
+  :global(#theme-toggle) {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    color: var(--fg);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 4px 4px 0 var(--fg);
+    transition: all 0.2s;
+  }
+
+  :global(#theme-toggle:hover) {
+    box-shadow: 6px 6px 0 var(--fg);
+    transform: translateY(-1px);
+  }
+
+  :global(#theme-toggle:active) {
+    box-shadow: 2px 2px 0 var(--fg);
+    transform: translateY(1px);
+  }
+</style>
