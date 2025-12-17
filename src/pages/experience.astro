@@ -5,9 +5,10 @@ import { getCollection } from 'astro:content';
 const experiences = await getCollection('experience');
 ---
 
-<BaseLayout title="Experience">
-	<section>
-		<h1>Experience</h1>
+ <BaseLayout title="Experience">
+ 	<section>
+ 		<a href="/" class="back-link">← Back to Home</a>
+ 		<h1>Experience</h1>
 		<div class="git-log">
 			<div class="ascii-header">commit history (HEAD -> main)</div>
 			{experiences.reverse().map((exp, index) => (

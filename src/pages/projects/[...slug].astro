@@ -14,10 +14,11 @@ const { project } = Astro.props;
 const { Content } = await project.render();
 ---
 
-<BaseLayout title={project.data.title}>
-  <article>
-    <header>
-      <h1>{project.data.title}</h1>
+ <BaseLayout title={project.data.title}>
+   <article>
+     <a href="/" class="back-link">← Back to Home</a>
+     <header>
+       <h1>{project.data.title}</h1>
       <p class="meta">
         {project.data.date.toLocaleDateString()}
       </p>
