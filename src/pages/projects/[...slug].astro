@@ -1,0 +1,62 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<BaseLayout title={project.data.title}>
+  <article>
+    <header>
+      <h1>{project.data.title}</h1>
+      <p class="meta">
+        {project.data.date.toLocaleDateString()}
+      </p>
+      {project.data.image && <img src={project.data.image} alt={project.data.title} />}
+    </header>
+
+    <Content />
+
+    <footer>
+      <hr />
+      <p class="tags">
+        {project.data.tags?.map(tag => `#${tag}`).join(" ")}
+      </p>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .meta {
+    color: var(--fg-dim);
+    font-size: 0.9rem;
+  }
+
+  .tags {
+    color: var(--aqua);
+    font-size: 0.85rem;
+  }
+
+  article :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  img {
+    max-width: 600px;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    margin: 1rem auto;
+    display: block;
+    border-radius: 8px;
+  }
+</style>

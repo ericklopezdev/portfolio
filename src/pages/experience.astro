@@ -5,132 +5,100 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Experience">
 	<section>
 		<h1>Experience</h1>
-		<div class="timeline">
-			<div class="timeline-item">
-				<div class="timeline-marker"></div>
-				<div class="timeline-content">
-					<h3>Position Title 1</h3>
-					<p class="company">Company Name</p>
-					<p class="date">Start Date - End Date</p>
-					<p>Description of your role, responsibilities, and achievements. Highlight key projects, technologies used, and impact.</p>
-				</div>
+		<div class="git-log">
+			<div class="ascii-header">commit history (HEAD -> main)</div>
+			<div class="log-entry">
+				<span class="marker">*</span> <span class="commit-hash">2025-12-15</span> (<span class="branch">HEAD -> main</span>) - <span class="title">Backend & Ai Developer</span> at <span class="company">Licichat</span> (<span class="date">2023-01 - Present</span>)
 			</div>
-			<div class="timeline-item">
-				<div class="timeline-marker"></div>
-				<div class="timeline-content">
-					<h3>Position Title 2</h3>
-					<p class="company">Company Name</p>
-					<p class="date">Start Date - End Date</p>
-					<p>Description of your role, responsibilities, and achievements.</p>
-				</div>
+			<div class="log-body">
+        Develop a RAG based system for a chatbot llm, specilized in peruvian tenders for for a tutor and guide in the application process.
+        I've used backend frameworks and cloud services:
+        - Google Cloud - Cloud Run
+        - Supabase
+        - FastAPI
 			</div>
-			<div class="timeline-item">
-				<div class="timeline-marker"></div>
-				<div class="timeline-content">
-					<h3>Position Title 3</h3>
-					<p class="company">Company Name</p>
-					<p class="date">Start Date - End Date</p>
-					<p>Description of your role, responsibilities, and achievements.</p>
-				</div>
+			<div class="separator">|</div>
+			<div class="log-entry">
+				<span class="marker">*</span> <span class="commit-hash">2025-070-12</span> - <span class="title">Software Engineer</span> at <span class="company">InnovateLabs</span> (<span class="date">2021-06 - 2022-12</span>)
+			</div>
+			<div class="log-body">
+				Developed full-stack web applications, collaborated on agile teams, mentored junior developers. Stack: React, Python, PostgreSQL.
+			</div>
+			<div class="separator">| \</div>
+			<div class="log-entry">
+				<span class="marker">|</span> <span class="commit-hash">branch-off</span> - <span class="title">Project Lead</span> at <span class="company">InnovateLabs</span> (<span class="date">2022-03 - 2022-06</span>)
+			</div>
+			<div class="log-body">
+				Managed a team of 5 developers on a critical project, delivered ahead of schedule. Tools: Jira, Git, CI/CD pipelines.
+			</div>
+			<div class="separator">| /</div>
+			<div class="log-entry">
+				<span class="marker">*</span> <span class="commit-hash">ghi9012</span> - <span class="title">Junior Developer</span> at <span class="company">StartupXYZ</span> (<span class="date">2019-08 - 2021-05</span>)
+			</div>
+			<div class="log-body">
+				Built responsive websites, learned modern JS frameworks, contributed to open-source projects. Languages: JavaScript, HTML/CSS.
+			</div>
+			<div class="separator">|</div>
+			<div class="log-entry">
+				<span class="marker">*</span> <span class="commit-hash">jkl3456</span> - <span class="title">Intern</span> at <span class="company">CodeMasters</span> (<span class="date">2018-06 - 2018-08</span>)
+			</div>
+			<div class="log-body">
+				Assisted in debugging and testing, gained experience in version control and code reviews. First exposure to professional development.
 			</div>
 		</div>
 	</section>
 
 	<style>
-		.timeline {
-			position: relative;
-			max-width: 600px;
-			margin: 0 auto;
+		.git-log {
+			font-family: 'Iosevka', monospace;
+			font-size: 1rem;
+			line-height: 1.5;
+			color: var(--fg);
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			max-width: 90vw;
+			margin: 0;
+			position: sticky;
 		}
 
-		.timeline::before {
-			content: '';
-			position: absolute;
-			left: 30px;
-			top: 0;
-			bottom: 0;
-			width: 4px;
-			background: repeating-linear-gradient(
-				to bottom,
-				var(--border) 0px,
-				var(--border) 8px,
-				transparent 8px,
-				transparent 12px
-			);
+		.ascii-header {
+			color: var(--cyan);
+			font-weight: bold;
 		}
 
-		.timeline-item {
-			position: relative;
-			margin-bottom: 2rem;
-			padding-left: 60px;
-		}
-
-		.timeline-content:hover {
-			box-shadow: 6px 6px 0 var(--fg);
-		}
-
-		.timeline-marker:hover {
-			background: var(--yellow);
-			transform: scale(1.1);
-		}
-
-		.timeline-marker {
-			position: absolute;
-			left: 18px;
-			top: 5px;
-			width: 24px;
-			height: 24px;
-			border-radius: 50%;
-			background: var(--aqua);
-			border: 3px solid var(--bg);
-			box-shadow: 0 0 0 2px var(--border);
-		}
-
-		.timeline-content {
-			background: var(--bg-soft);
-			padding: 1rem;
-			border-radius: 0;
-			border: 2px solid var(--border);
-			box-shadow: 4px 4px 0 var(--fg);
-			transition: box-shadow 0.2s;
-		}
-
-		.timeline-content h3 {
+		.marker {
 			color: var(--yellow);
-			margin: 0 0 0.5rem 0;
+			font-weight: bold;
+		}
+
+		.commit-hash {
+			color: var(--green);
+		}
+
+		.branch {
+			color: var(--red);
+		}
+
+		.title {
+			color: var(--yellow);
 		}
 
 		.company {
 			color: var(--blue);
-			font-weight: bold;
-			margin: 0 0 0.25rem 0;
 		}
 
 		.date {
 			color: var(--fg-dim);
-			font-size: 0.9rem;
-			margin: 0 0 0.5rem 0;
 		}
 
-		.timeline-content p {
-			margin: 0;
+		.log-body {
+			margin-left: 2rem;
 			color: var(--fg);
 		}
 
-		@media (max-width: 768px) {
-			.timeline::before {
-				left: 20px;
-			}
-
-			.timeline-item {
-				padding-left: 40px;
-			}
-
-			.timeline-marker {
-				left: 8px;
-				width: 20px;
-				height: 20px;
-			}
+		.separator {
+			color: var(--fg);
+			font-weight: bold;
 		}
 	</style>
 </BaseLayout>

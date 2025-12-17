@@ -40,17 +40,20 @@
 </script>
 
 <style>
-  :global(#theme-toggle) {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    color: var(--fg);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: bold;
-    box-shadow: 4px 4px 0 var(--fg);
-    transition: all 0.2s;
-  }
+   :global(#theme-toggle) {
+     background: var(--bg);
+     border: 1px solid var(--border);
+     cursor: pointer;
+     color: var(--fg);
+     padding: 0.5rem 1rem;
+     border-radius: 4px;
+     font-weight: bold;
+     box-shadow: 4px 4px 0 var(--fg);
+     transition: all 0.2s;
+     position: absolute;
+     right: 1rem;
+     top: 1rem;
+   }
 
   :global(#theme-toggle:hover) {
     box-shadow: 6px 6px 0 var(--fg);

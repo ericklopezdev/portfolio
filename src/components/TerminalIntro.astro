@@ -1,0 +1,162 @@
+---
+// TerminalIntro.astro
+---
+
+<div class="terminal">
+  <div class="terminal-header">
+    <span class="terminal-button red"></span>
+    <span class="terminal-button yellow"></span>
+    <span class="terminal-button green"></span>
+    <span class="terminal-title">portfolio.sh</span>
+  </div>
+  <div class="terminal-body">
+    <pre><code>$ ./portfolio.sh --info
+
+Welcome to <strong>Crow's Portfolio</strong>
+
+<span class="green">Name:</span> Crow
+<span class="green">Role:</span> Software Engineer
+<span class="green">Bio:</span> Passionate developer with experience in DevOps, Kubernetes, and web technologies.
+         Always learning and building cool stuff.
+
+<span class="blue">Available Pages:</span>
+  - <a href="/">Home</a>: Overview and navigation
+  - <a href="/experience">Experience</a>: Professional background
+  - <a href="/projects">Projects</a>: Featured work and projects
+  - <a href="/certifications">Certifications</a>: Credentials and achievements
+  - <a href="/log">Log</a>: Blog posts and thoughts
+
+<span class="yellow">Theme:</span> Toggle between light and dark modes using the button in the header.
+
+<span class="red">Contact:</span> Feel free to reach out for collaborations or questions!
+
+$ <span class="cursor">_</span></span></code></pre>
+  </div>
+</div>
+
+
+
+<style>
+   .terminal {
+     max-width: 100%;
+     margin: 2rem auto;
+     background: var(--bg);
+     border: 1px solid var(--border);
+     border-radius: 8px;
+     font-family: 'Iosevka', monospace;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   }
+
+  .terminal-header {
+    background: var(--bg-soft);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: inline-block;
+  }
+
+  .red { background: #ff5f57; }
+  .yellow { background: #ffbd2e; }
+  .green { background: #28ca42; }
+
+  .terminal-title {
+    flex: 1;
+    text-align: center;
+    color: var(--fg);
+    font-size: 0.9rem;
+  }
+
+  .terminal-body {
+    padding: 1rem;
+    color: var(--fg);
+  }
+
+  .terminal-body pre {
+    margin: 0;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .terminal-body code {
+    background: transparent;
+    padding: 0;
+  }
+
+  .terminal-body strong {
+    color: var(--yellow);
+  }
+
+  .terminal-body .green {
+    color: var(--green);
+  }
+
+  .terminal-body .blue {
+    color: var(--blue);
+  }
+
+  .terminal-body .yellow {
+    color: var(--yellow);
+  }
+
+  .terminal-body .red {
+    color: var(--red);
+  }
+
+  .terminal-body a {
+    color: var(--aqua);
+    text-decoration: none;
+  }
+
+  .terminal-body a:hover {
+    text-decoration: underline;
+  }
+
+  [data-theme="light"] .terminal-body a {
+    color: var(--blue);
+  }
+
+  .cursor {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  /* Responsive */
+
+
+  @media (max-width: 768px) {
+    .terminal {
+      margin: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .terminal-header {
+      padding: 0.3rem 0.5rem;
+    }
+
+    .terminal-body {
+      padding: 0.5rem;
+    }
+
+    .terminal-title {
+      font-size: 0.8rem;
+    }
+  }
+</style>

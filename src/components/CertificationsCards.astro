@@ -1,0 +1,72 @@
+---
+import LinuxWindow from './LinuxWindow.astro';
+import { getCollection } from 'astro:content';
+
+const certifications = await getCollection('certifications');
+---
+
+<div class="certifications-tiling">
+  {certifications.map((cert) => (
+    <LinuxWindow title="Certification">
+      <div class="cert-content">
+        <div class="cert-text">
+          <h3>{cert.data.title}</h3>
+          <p>Issuer: {cert.data.issuer}</p>
+          <p>Date: {cert.data.date}</p>
+          {cert.data.link && (
+            <p><a href={cert.data.link} target="_blank" rel="noopener noreferrer">View Certificate</a></p>
+          )}
+        </div>
+        <div class="cert-image">
+          {cert.data.image ? (
+            <img src={cert.data.image} alt={`${cert.data.title} Certificate`} />
+          ) : (
+            '[Image Placeholder]'
+          )}
+        </div>
+      </div>
+    </LinuxWindow>
+  ))}
+</div>
+
+<style>
+   .certifications-tiling {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+     gap: 1rem;
+     padding: 2rem;
+   }
+
+   .certifications-tiling .terminal {
+     width: 100%;
+     max-width: none;
+   }
+
+   .cert-content {
+     display: flex;
+     gap: 1rem;
+     align-items: flex-start;
+   }
+
+   .cert-text {
+     flex: 1;
+     min-width: 200px;
+   }
+
+   .cert-image {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: #000000;
+     font-size: 0.9rem;
+     overflow: hidden;
+   }
+
+   .cert-image img {
+     width: 100%;
+     max-height: 200px;
+     object-fit: contain;
+   }
+
+
+</style>
