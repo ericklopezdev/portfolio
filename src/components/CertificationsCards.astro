@@ -37,11 +37,6 @@ const certifications = await getCollection('certifications');
      padding: 2rem;
    }
 
-   .certifications-tiling .terminal {
-     width: 100%;
-     max-width: none;
-   }
-
    .cert-content {
      display: flex;
      gap: 1rem;
@@ -68,5 +63,17 @@ const certifications = await getCollection('certifications');
      object-fit: contain;
    }
 
+   /* Mobile responsive */
+   @media (max-width: 768px) {
+     .cert-content {
+       flex-direction: column-reverse;
+       gap: 0.5rem;
+     }
 
+     .cert-image img {
+       max-height: none;
+       width: 100%;
+       height: auto;
+     }
+   }
 </style>

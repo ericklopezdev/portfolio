@@ -34,8 +34,14 @@ const experiences = await getCollection('experience');
 			white-space: pre-wrap;
 			word-wrap: break-word;
 			max-width: 90vw;
-			margin: 0;
+			margin: 0 auto;
 			position: sticky;
+		}
+
+		@media (min-width: 768px) {
+			.git-log {
+				max-width: 800px;
+			}
 		}
 
 		.ascii-header {

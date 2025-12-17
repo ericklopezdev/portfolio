@@ -9,10 +9,10 @@
     <span class="terminal-button green"></span>
     <span class="terminal-title">portfolio.sh</span>
   </div>
-  <div class="terminal-body">
-    <pre><code>$ ./portfolio.sh --info
+   <div class="terminal-body">
+     <pre><code>$ ./portfolio.sh --info
 
-Welcome to <strong>Crow's Portfolio</strong>
+<span class="typed-text">Welcome to <strong>Crow's Portfolio</strong>
 
 <span class="green">Name:</span> Crow
 <span class="green">Role:</span> Software Engineer
@@ -27,17 +27,20 @@ Welcome to <strong>Crow's Portfolio</strong>
 
 <span class="yellow">Theme:</span> Toggle between light and dark modes using the button in the header.
 
-<span class="red">Contact:</span> Feel free to reach out for collaborations or questions!
+ <span class="red">Contact:</span>
+   - GitHub: <a href="https://github.com/yourusername" target="_blank">https://github.com/yourusername</a>
+   - Email: <a href="mailto:your.email@example.com">mailto:your.email@example.com</a>
+   - LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">https://linkedin.com/in/yourprofile</a>
 
 $ <span class="cursor">_</span></span></code></pre>
-  </div>
+   </div>
 </div>
 
 
 
 <style>
    .terminal {
-     max-width: 100%;
+     max-width: 800px;
      margin: 2rem auto;
      background: var(--bg);
      border: 1px solid var(--border);
@@ -63,15 +66,19 @@ $ <span class="cursor">_</span></span></code></pre>
     display: inline-block;
   }
 
-  .red { background: #ff5f57; }
-  .yellow { background: #ffbd2e; }
-  .green { background: #28ca42; }
+  .red { background: #cd5c5c; }
+  .yellow { background: #daa520; }
+  .green { background: #9acd32; }
 
   .terminal-title {
     flex: 1;
     text-align: center;
     color: var(--fg);
     font-size: 0.9rem;
+  }
+
+  [data-theme="dark"] .terminal-title {
+    color: white;
   }
 
   .terminal-body {
@@ -100,7 +107,7 @@ $ <span class="cursor">_</span></span></code></pre>
   }
 
   .terminal-body .green {
-    color: var(--green);
+    color: white;
   }
 
   .terminal-body .blue {
@@ -108,54 +115,16 @@ $ <span class="cursor">_</span></span></code></pre>
   }
 
   .terminal-body .yellow {
-    color: var(--yellow);
+    color: white;
   }
 
   .terminal-body .red {
-    color: var(--red);
+    color: white;
   }
 
-  .terminal-body a {
-    color: var(--aqua);
-    text-decoration: none;
-  }
-
-  .terminal-body a:hover {
-    text-decoration: underline;
-  }
-
-  [data-theme="light"] .terminal-body a {
-    color: var(--blue);
-  }
-
-  .cursor {
-    animation: blink 1s infinite;
-  }
-
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-
-  /* Responsive */
-
-
-  @media (max-width: 768px) {
-    .terminal {
-      margin: 1rem;
-      font-size: 0.8rem;
+    .typed-text {
+      display: inline;
     }
-
-    .terminal-header {
-      padding: 0.3rem 0.5rem;
-    }
-
-    .terminal-body {
-      padding: 0.5rem;
-    }
-
-    .terminal-title {
-      font-size: 0.8rem;
-    }
-  }
 </style>
+
+
