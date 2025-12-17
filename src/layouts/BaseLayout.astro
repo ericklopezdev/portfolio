@@ -12,20 +12,22 @@ const { title } = Astro.props;
     <title>{title}</title>
 
   </head>
-  <body>
-     <header>
-       <nav>
-         <a href="/" class={Astro.url.pathname === '/' ? 'active' : ''}>Home</a>
-         <a href="/experience" class={Astro.url.pathname === '/experience' ? 'active' : ''}>Experience</a>
-         <a href="/projects" class={Astro.url.pathname === '/projects' || Astro.url.pathname.startsWith('/projects/') ? 'active' : ''}>Projects</a>
-         <a href="/certifications" class={Astro.url.pathname === '/certifications' ? 'active' : ''}>Certifications</a>
-       </nav>
-       <ThemeToggle />
-     </header>
-     <main class="container">
-       <slot />
-     </main>
-  </body>
+   <body>
+      <header>
+        <nav>
+          <a href="/" class={Astro.url.pathname === '/' ? 'active' : ''}>Home</a>
+          <a href="/experience" class={Astro.url.pathname === '/experience' ? 'active' : ''}>Experience</a>
+          <a href="/projects" class={Astro.url.pathname === '/projects' || Astro.url.pathname.startsWith('/projects/') ? 'active' : ''}>Projects</a>
+          <a href="/certifications" class={Astro.url.pathname === '/certifications' ? 'active' : ''}>Certifications</a>
+        </nav>
+        <ThemeToggle />
+      </header>
+
+
+      <main class="container">
+        <slot />
+      </main>
+   </body>
 </html>
 
 <style>
@@ -76,7 +78,6 @@ const { title } = Astro.props;
      max-width: 850px;
      margin: 6rem auto 4rem;
      padding: 0 1rem;
-     animation: fadeIn 0.5s;
    }
 
    @keyframes fadeIn {

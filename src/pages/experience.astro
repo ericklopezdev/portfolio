@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const experiences = await getCollection('experience');
 ---
 
 <BaseLayout title="Experience">
@@ -7,44 +10,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		<h1>Experience</h1>
 		<div class="git-log">
 			<div class="ascii-header">commit history (HEAD -> main)</div>
-			<div class="log-entry">
-				<span class="marker">*</span> <span class="commit-hash">2025-12-15</span> (<span class="branch">HEAD -> main</span>) - <span class="title">Backend & Ai Developer</span> at <span class="company">Licichat</span> (<span class="date">2023-01 - Present</span>)
-			</div>
-			<div class="log-body">
-        Develop a RAG based system for a chatbot llm, specilized in peruvian tenders for for a tutor and guide in the application process.
-        I've used backend frameworks and cloud services:
-        - Google Cloud - Cloud Run
-        - Supabase
-        - FastAPI
-			</div>
-			<div class="separator">|</div>
-			<div class="log-entry">
-				<span class="marker">*</span> <span class="commit-hash">2025-070-12</span> - <span class="title">Software Engineer</span> at <span class="company">InnovateLabs</span> (<span class="date">2021-06 - 2022-12</span>)
-			</div>
-			<div class="log-body">
-				Developed full-stack web applications, collaborated on agile teams, mentored junior developers. Stack: React, Python, PostgreSQL.
-			</div>
-			<div class="separator">| \</div>
-			<div class="log-entry">
-				<span class="marker">|</span> <span class="commit-hash">branch-off</span> - <span class="title">Project Lead</span> at <span class="company">InnovateLabs</span> (<span class="date">2022-03 - 2022-06</span>)
-			</div>
-			<div class="log-body">
-				Managed a team of 5 developers on a critical project, delivered ahead of schedule. Tools: Jira, Git, CI/CD pipelines.
-			</div>
-			<div class="separator">| /</div>
-			<div class="log-entry">
-				<span class="marker">*</span> <span class="commit-hash">ghi9012</span> - <span class="title">Junior Developer</span> at <span class="company">StartupXYZ</span> (<span class="date">2019-08 - 2021-05</span>)
-			</div>
-			<div class="log-body">
-				Built responsive websites, learned modern JS frameworks, contributed to open-source projects. Languages: JavaScript, HTML/CSS.
-			</div>
-			<div class="separator">|</div>
-			<div class="log-entry">
-				<span class="marker">*</span> <span class="commit-hash">jkl3456</span> - <span class="title">Intern</span> at <span class="company">CodeMasters</span> (<span class="date">2018-06 - 2018-08</span>)
-			</div>
-			<div class="log-body">
-				Assisted in debugging and testing, gained experience in version control and code reviews. First exposure to professional development.
-			</div>
+			{experiences.reverse().map((exp, index) => (
+				<>
+					<div class="log-entry">
+						<span class="marker">*</span> <span class="commit-hash">{exp.data.date}</span> (<span class="branch">HEAD -> main</span>) - <span class="title">{exp.data.title}</span> at <span class="company">{exp.data.company}</span>
+					</div>
+					<div class="log-body">
+						{exp.body}
+					</div>
+					{index < experiences.length - 1 && <div class="separator">|</div>}
+				</>
+			))}
 		</div>
 	</section>
 
