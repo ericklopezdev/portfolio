@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import LinuxWindow from './LinuxWindow.astro';
 
 const projects = await getCollection("projects");
+// TODO there is a overflow witht the cards of projects
 ---
 
 <div class="projects-grid">
@@ -38,10 +39,11 @@ const projects = await getCollection("projects");
   .projects-grid {
     font-size: 0.8rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
     max-width: 100%;
   }
+
 
     .tags {
       display: flex;

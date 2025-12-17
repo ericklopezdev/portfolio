@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BackLink from '../components/BackLink.astro';
 import { getCollection } from 'astro:content';
 
 const experiences = await getCollection('experience');
 ---
 
- <BaseLayout title="Experience">
- 	<section>
- 		<a href="/" class="back-link">← Back to Home</a>
+  <BaseLayout title="Experience">
+  	<section>
+  		<BackLink />
  		<h1>Experience</h1>
 		<div class="git-log">
 			<div class="ascii-header">commit history (HEAD -> main)</div>
@@ -28,7 +29,6 @@ const experiences = await getCollection('experience');
 	<style>
 		.git-log {
 			font-family: 'Iosevka', monospace;
-			font-size: 1rem;
 			line-height: 1.5;
 			color: var(--fg);
 			white-space: pre-wrap;
@@ -36,11 +36,13 @@ const experiences = await getCollection('experience');
 			max-width: 90vw;
 			margin: 0 auto;
 			position: sticky;
+      font-size: 0.9rem;
 		}
 
 		@media (min-width: 768px) {
 			.git-log {
 				max-width: 800px;
+        font-size: 1rem;
 			}
 		}
 

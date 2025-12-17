@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import BackLink from "../../components/BackLink.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -14,9 +15,9 @@ const { project } = Astro.props;
 const { Content } = await project.render();
 ---
 
- <BaseLayout title={project.data.title}>
-   <article>
-     <a href="/" class="back-link">← Back to Home</a>
+  <BaseLayout title={project.data.title}>
+    <article>
+      <BackLink />
      <header>
        <h1>{project.data.title}</h1>
       <p class="meta">

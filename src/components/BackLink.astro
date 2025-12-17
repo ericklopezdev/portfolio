@@ -1,0 +1,24 @@
+---
+export interface Props {
+  href?: string;
+  text?: string;
+}
+
+const { href = "/", text = "← Back to Home" } = Astro.props;
+---
+
+<a href={href} class="back-link">{text}</a>
+
+<style>
+  .back-link {
+    display: inline-block;
+    color: var(--blue);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    padding-top: 4rem;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -21,7 +21,7 @@ const certifications = await getCollection('certifications');
           {cert.data.image ? (
             <img src={cert.data.image} alt={`${cert.data.title} Certificate`} />
           ) : (
-            '[Image Placeholder]'
+            '[image placeholder]'
           )}
         </div>
       </div>
@@ -34,7 +34,6 @@ const certifications = await getCollection('certifications');
      display: grid;
      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
      gap: 1rem;
-     padding: 2rem;
    }
 
    .cert-content {

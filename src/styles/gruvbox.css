@@ -40,6 +40,10 @@
   font-style: normal;
 }
 
+html {
+  font-family: 'Iosevka', monospace;
+}
+
 :root {
   --bg: #282828;
   --bg-soft: #32302f;
@@ -89,7 +93,6 @@ body {
   padding: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: 'Iosevka', monospace;
   line-height: 1.7;
 }
 
@@ -215,6 +218,16 @@ hr {
 
 [data-theme="light"] .terminal-body a {
   color: var(--blue);
+}
+
+/* Cursor blink animation */
+.cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 /* Responsive */

@@ -1,14 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectsCards from '../components/ProjectsCards.astro';
+import BackLink from '../components/BackLink.astro';
 ---
 
- <BaseLayout title="Projects">
- 	<section>
- 		<a href="/" class="back-link">← Back to Home</a>
- 		<h1>Projects</h1>
- 		<ProjectsCards />
- 	</section>
+  <BaseLayout title="Projects">
+  	<section>
+  		<BackLink />
+  		<h1>Projects</h1>
+  		<ProjectsCards />
+  	</section>
 </BaseLayout>
 
 <style>

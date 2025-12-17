@@ -10,24 +10,24 @@
     <span class="terminal-title">portfolio.sh</span>
   </div>
    <div class="terminal-body">
-     <pre><code>$ ./portfolio.sh --info
+      <pre><code>$ ./portfolio.sh --info
 
-<span class="typed-text">Welcome to <strong>Crow's Portfolio</strong>
+<span id="output-text">Welcome to <strong>Crow's Portfolio</strong>
 
 <span class="green">Name:</span> Crow
 <span class="green">Role:</span> Software Engineer
 <span class="green">Bio:</span> Passionate developer with experience in DevOps, Kubernetes, and web technologies.
          Always learning and building cool stuff.
 
- <span class="blue">Available Pages:</span>
-   - <a href="/">Home</a>: Overview and navigation
-   - <a href="/experience">Experience</a>: Professional background
-   - <a href="/projects">Projects</a>: Featured work and projects
-   - <a href="/certifications">Certifications</a>: Credentials and achievements
+  <span class="blue">Available Pages:</span>
+    - <a href="/">Home</a>: Overview and navigation
+    - <a href="/experience">Experience</a>: Professional background
+    - <a href="/projects">Projects</a>: Featured work and projects
+    - <a href="/certifications">Certifications</a>: Credentials and achievements
 
 <span class="yellow">Theme:</span> Toggle between light and dark modes using the button in the header.
 
- <span class="red">Contact:</span>
+<span class="red">Contact:</span>
    - GitHub: <a href="https://github.com/yourusername" target="_blank">https://github.com/yourusername</a>
    - Email: <a href="mailto:your.email@example.com">mailto:your.email@example.com</a>
    - LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">https://linkedin.com/in/yourprofile</a>
@@ -38,9 +38,9 @@ $ <span class="cursor">_</span></span></code></pre>
 
 
 
-<style>
+<style is:global>
    .terminal {
-     max-width: 800px;
+     max-width: 600px;
      margin: 2rem auto;
      background: var(--bg);
      border: 1px solid var(--border);
@@ -122,9 +122,40 @@ $ <span class="cursor">_</span></span></code></pre>
     color: white;
   }
 
-    .typed-text {
+    #output-text {
       display: inline;
     }
+</style>
+
+<script>
+  console.log("TerminalIntro script running");
+  const outputSpan = document.getElementById("output-text");
+  console.log("outputSpan:", outputSpan);
+  const fullText = outputSpan ? outputSpan.innerHTML : '';
+  if (outputSpan && !localStorage.getItem("introAnimated")) {
+    console.log("Starting animation");
+    outputSpan.innerHTML = "";
+    let index = 0;
+    const typeWriter = () => {
+      if (index < fullText.length) {
+        outputSpan.innerHTML = fullText.slice(0, index + 1);
+        index++;
+        const delay = 10; // Constant speed for all characters
+        setTimeout(typeWriter, delay);
+      } else {
+        localStorage.setItem("introAnimated", "true");
+        console.log("Animation complete");
+      }
+    };
+    setTimeout(typeWriter, 500);
+  }
+  // Start cursor blinking immediately
+  const cursor = document.querySelector('.cursor') as HTMLElement;
+  if (cursor) {
+    console.log("Starting cursor blink");
+    cursor.style.animation = 'blink 1s infinite';
+  }
+</script>
 </style>
 
 

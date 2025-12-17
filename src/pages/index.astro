@@ -4,5 +4,18 @@ import TerminalIntro from '../components/TerminalIntro.astro';
 ---
 
 <BaseLayout title="Portfolio">
-  	<TerminalIntro />
+  	<div class="home-center">
+  		<TerminalIntro />
+  	</div>
 </BaseLayout>
+
+<style>
+   .home-center {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+     width: 100%;
+     margin-top: 0;
+   }
+</style>

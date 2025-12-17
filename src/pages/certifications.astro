@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CertificationsCards from '../components/CertificationsCards.astro';
+import BackLink from '../components/BackLink.astro';
 ---
 
-<BaseLayout title="Certifications">
- 	<section>
- 		<a href="/" class="back-link">← Back to Home</a>
+ <BaseLayout title="Certifications">
+  	<section>
+  		<BackLink />
  		<h1>Certifications</h1>
  		<CertificationsCards />
  	</section>
