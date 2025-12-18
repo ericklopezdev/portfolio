@@ -1,31 +1,33 @@
 ---
-title: CrowBot Discord Assistant
-description: An intelligent Discord bot with moderation, music playback, and custom command features built with modern JavaScript.
+title: CrowBot - Asistente de Aprendizaje
+description: Un asistente para el desarrollo y aprendizaje de niños en esta era de consumo de redes sociales y IA.
 date: 2023-08-30
-tags: ['JavaScript', 'Discord.js', 'Node.js', 'MongoDB', 'Heroku']
-image: /images/projects/ai-chatbot.jpg
-github: https://github.com/yourusername/crowbot
-demo: https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID
+tags: ['Golang', 'Google Cloud', 'STT', 'TTS', 'Gemini', 'MQTT']
+image: /images/projects/crowbot.png
+github: https://github.com/ericklopezdev/crowbot
 ---
 
-# CrowBot Discord Assistant
+# CrowBot - Asistente de Aprendizaje
 
-A feature-rich Discord bot designed to enhance server management and user engagement with automated moderation and entertainment features.
+Un asistente diseñado para ayudar en el desarrollo y aprendizaje de niños en la era de las redes sociales y el consumo de IA.
 
-## Features
+## Características
 
-- Automated moderation with configurable rules
-- Music playback from YouTube and Spotify
-- Custom command system
-- Server statistics and analytics
-- Role management and auto-assignment
-- Welcome messages and event notifications
-- Integration with external APIs
+- Contenido educativo interactivo con voz (STT/TTS)
+- Monitoreo de consumo de redes sociales
+- Integración con IA (Gemini) para recomendaciones personalizadas de aprendizaje
+- Cuestionarios y evaluaciones con retroalimentación automática
+- Gestión de horarios de estudio con recordatorios
+- Notificaciones de recordatorios educativos
+- Integración con plataformas de aprendizaje externas
+- Sistema de etiquetado y categorización con MQTT
 
-## Technologies
+## Tecnologías
 
-- Runtime: Node.js, Discord.js v14
-- Database: MongoDB with Mongoose
+- Backend: Golang
+- Base de datos: MongoDB con Mongoose
 - Hosting: Heroku, Railway
+- Google Cloud: STT (Speech-to-Text), TTS (Text-to-Speech), Gemini LLM
 - APIs: YouTube API, Spotify API, OpenWeatherMap
-- Testing: Jest, Discord.js Testing Library
+- Mensajería: MQTT para etiquetado y gestión de información
+- Pruebas: Jest, Discord.js Testing Library

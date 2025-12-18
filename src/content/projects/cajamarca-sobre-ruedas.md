@@ -1,32 +1,29 @@
 ---
 title: Cajamarca Sobre Ruedas
-description: A tourism platform for Cajamarca region featuring bike routes, local attractions, and travel planning tools.
+description: Sistema de gestión de inventario para un negocio de mi localidad
 date: 2023-03-10
-tags: ['Vue.js', 'Node.js', 'MongoDB', 'Leaflet', 'Express']
-image: /images/projects/sample-project.jpg
-github: https://github.com/yourusername/cajamarca-sobre-ruedas
-demo: https://cajamarca-sobre-ruedas.example.com
+tags: ['C#', ".NET Framework", "MVC", "HTML", "CSS"]
+image: /images/projects/csrs.png
+github: https://github.com/ericklopezdev/DyasCsrs
 ---
 
 # Cajamarca Sobre Ruedas
 
-A comprehensive tourism platform for the Cajamarca region, promoting sustainable tourism through cycling routes and cultural experiences.
+Un sistema de gestión para inventario diseñado para facilitar el control de stock y ventas en un negocio local.
 
-## Features
+## Características
 
-- Interactive map with bike routes
-- Local attraction guides
-- Accommodation and restaurant listings
-- Weather integration for trip planning
-- User reviews and ratings
-- Multilingual support (Spanish/English)
-- Mobile-responsive design
+- Dashboard Interactivo con métricas en tiempo real
+- Gestión de inventario con alertas de stock bajo
+- Registro de ventas y facturación
+- Control de proveedores y pedidos
+- Reportes de ganancias y pérdidas
+- Interfaz responsiva para móviles y escritorio
+- Soporte multilingüe (Español/Inglés)
 
-## Technologies
+## Tecnologías
 
-- Frontend: Vue.js, Vuex, Leaflet Maps
-- Backend: Node.js, Express, MongoDB
-- Authentication: JWT, Passport.js
-- Maps: OpenStreetMap, Leaflet
-- Hosting: DigitalOcean, Cloudflare
-- CI/CD: GitHub Actions
+- Frontend: HTML, CSS, JavaScript
+- Backend: C#, .NET Framework, MVC
+- Base de datos: SQL Server
+- Hosting: Somee.com

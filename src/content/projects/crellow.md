@@ -1,28 +1,31 @@
 ---
-title: Crellow - Trello Clone
-description: Clone internativo de Software Trello para gestion de trabajo en equipo.
+title: Crellow - Clon de Trello
+description: Clon interactivo de software Trello para gestión de trabajo en equipo.
 date: 2025-05-15
-tags: ['ReactJS', 'Typescript', 'Express', 'Prisma', 'Postgres SQL']
-image: /images/projects/ai-chatbot.jpg
+tags: ['Angular', 'Typescript', 'Express', 'Prisma', 'MongoDB']
+image: /images/projects/crellow.png
 github: https://github.com/ericklopezdev/crellow-backend
-demo: https://chatbot-demo.example.com
+demo: https://crellow-demo.example.com
 ---
 
-# Trello Clone
+# Clon de Trello
 
-A comprehensive chatbot solution that leverages machine learning and NLP to provide intelligent conversational experiences.
+Un SaaS clon de Trello diseñado para facilitar la gestión de proyectos y trabajo en equipo mediante tableros, listas y tarjetas.
 
-## Features
+## Características
 
-- Natural language understanding
-- Context-aware responses
-- Multi-platform integration
-- Analytics dashboard
-- Customizable personalities
+- Creación y gestión de tableros personalizados
+- Listas y tarjetas con arrastrar y soltar
+- Asignación de tareas a miembros del equipo
+- Comentarios y adjuntos en tarjetas
+- Vistas de calendario y timeline
+- Integración con autenticación de usuarios
+- Interfaz intuitiva y responsiva
 
-## Technologies
+## Tecnologías
 
-- Backend: Python, FastAPI, TensorFlow
-- Frontend: React, TypeScript
-- Database: PostgreSQL
-- Deployment: Docker, AWS
+- Frontend: Angular, Typescript
+- Backend: Express, Node.js
+- ORM: Prisma
+- Base de datos: MongoDB
+- Despliegue: Railway
