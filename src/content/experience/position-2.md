@@ -1,8 +1,10 @@
 ---
-title: Backend & AI Developer
-company: Licichat.com
-date: Start Date - End Date
-tags: [tag1, tag2]
+title: Software Engineer Intern
+company: LicitApp
+date: Ago 2025 - Nov 2025
+tags: [AI, RAG, Backend, GCP, OCR]
 ---
-
-Encargado de la implementación de funcionalidades que automatizan procesos de licitaciones, así como el desarrollo de un sistema de chat potenciado por IA. El rol incluyó desde el diseño de arquitectura hasta la integración con servicios en la nube para garantizar escalabilidad y confiabilidad.
+• Desarrollo de un AI chatbot especializado en procesos de contratación pública utilizando RAG (Retrieval-Augmented Generation).
+• Construcción de backend APIs y pipelines de datos para el procesamiento y consulta de documentos.
+• Integración de OCR en Google Cloud (GCP) y bases de datos vectoriales.
+• Participación en el cloud deployment y configuración segura de servicios en GCP.

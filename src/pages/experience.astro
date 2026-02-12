@@ -12,10 +12,10 @@ const experiences = await getCollection('experience');
  		<h1>Experience</h1>
 		<div class="git-log">
 			<div class="ascii-header">commit history (HEAD -> main)</div>
-			{experiences.reverse().map((exp, index) => (
+			{experiences.map((exp, index) => (
 				<>
 					<div class="log-entry">
-						<span class="marker">*</span> <span class="commit-hash">{exp.data.date}</span> (<span class="branch">HEAD -> main</span>) - <span class="title">{exp.data.title}</span> at <span class="company">{exp.data.company}</span>
+						<span class="marker">*</span> <span class="commit-hash">{exp.data.date}</span> (<span class="branch">{index === 0 ? 'HEAD -> main' : 'main'}</span>) - <span class="title">{exp.data.title}</span> at <span class="company">{exp.data.company}</span>
 					</div>
 					<div class="log-body">
 						{exp.body}
