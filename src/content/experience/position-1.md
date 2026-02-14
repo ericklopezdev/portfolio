@@ -1,7 +1,7 @@
 ---
-title: Backend & Cloud Engineer
+title: Backend & Cloud Engineer Intern
 company: GEN Consultores
-date: Dic 2025 – Actualidad
+date: 2025-Dic-to-2026-Ene
 tags: [Backend, Cloud, SST]
 ---
 • Desarrollo de servicios backend para un sistema empresarial de Seguridad y Salud en el Trabajo (SST).

@@ -1,7 +1,7 @@
 ---
 title: Software Engineer Intern
 company: LicitApp
-date: Ago 2025 - Nov 2025
+date: 2025-Ago-to-2025-Nov
 tags: [AI, RAG, Backend, GCP, OCR]
 ---
 • Desarrollo de un AI chatbot especializado en procesos de contratación pública utilizando RAG (Retrieval-Augmented Generation).
