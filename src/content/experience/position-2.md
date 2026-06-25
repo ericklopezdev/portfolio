@@ -1,10 +1,10 @@
 ---
-title: Software Engineer Intern
-company: LicitApp
-date: 2025-Ago-to-2025-Nov
-tags: [AI, RAG, Backend, GCP, OCR]
+title: Software Developer & DevOps Engineer
+company: Sync-Astra
+date: 2025-Dec-to-2026-Feb
+tags: [Backend, DevOps, REST APIs, CI/CD, SQL]
 ---
-• Desarrollo de un AI chatbot especializado en procesos de contratación pública utilizando RAG (Retrieval-Augmented Generation).
-• Construcción de backend APIs y pipelines de datos para el procesamiento y consulta de documentos.
-• Integración de OCR en Google Cloud (GCP) y bases de datos vectoriales.
-• Participación en el cloud deployment y configuración segura de servicios en GCP.
+- Developed and delivered web systems for local businesses, covering requirements analysis, backend development, database design and deployment.
+- Designed backend functionality with REST APIs, modular components, authentication, authorization and relational databases.
+- Established version-control conventions, environment configuration and basic CI/CD practices to improve maintainability and deployment consistency.
+- Reviewed implementations and supported technical decisions while the team established its initial software engineering practices.

@@ -1,12 +1,11 @@
 ---
-title: Software Engineer Intern
-company: GEN Consultores
-date: 2025-Dic-to-2026-Ene
-tags: [Backend, Cloud, SST]
+title: DevOps & Cloud Engineer Intern
+company: Orexe
+date: 2026-Mar-to-2026-May
+tags: [Kubernetes, Helm, Terraform, Azure, AWS, Datadog, Splunk]
 ---
-• Desarrollo de servicios backend para un sistema empresarial de Seguridad y Salud en el Trabajo (SST).
-• Diseño y planificación de arquitectura backend escalable, considerando desacoplamiento de servicios
-y futura adopción de patrones serverless.
-• Implementación de APIs REST seguras, control de acceso y validación de datos orientados a flujos
-crı́ticos del negocio.
-• Colaboración en tareas DevOps para soportar el flujo de desarrollo frontend y backend).
+- Supported deployment and operation of cloud-native services on Kubernetes across multiple environments, improving configuration consistency and delivery reliability.
+- Migrated Kubernetes configuration management from Kustomize to Helm by creating reusable templates and separating environment-specific settings through values files.
+- Maintained and troubleshot CI/CD pipelines with Azure DevOps and GitHub Actions for repeatable service deployments.
+- Investigated application and infrastructure behavior with Datadog, Splunk, Kubernetes logs and Lens, analyzing resource consumption, container failures, caching behavior and deployment issues.
+- Contributed to infrastructure work involving Azure, AWS, Kubernetes and Terraform, connecting application behavior with infrastructure and operational trade-offs.

@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import { ArrowLeft, ArrowRight, ExternalLink, Github } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { projectDescription, ui, type Lang } from '../data/i18n';
 import type { Project } from '../lib/content';
 import { formatDate } from '../lib/text';
 import { TechIcon } from './TechIcon';
@@ -15,26 +16,36 @@ interface FeaturedProjectsCarouselProps {
   limit?: number;
   showViewAll?: boolean;
   pageMode?: boolean;
+  lang?: Lang;
 }
 
 export function FeaturedProjectsCarousel({
   projects,
-  title = 'Proyectos destacados',
-  eyebrow = 'Trabajo',
+  title = 'Featured projects',
+  eyebrow = 'Work',
   intro,
   limit = 5,
   showViewAll = true,
   pageMode = false,
+  lang = 'en',
 }: FeaturedProjectsCarouselProps) {
   const featured = useMemo(() => projects.slice(0, limit), [projects, limit]);
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [opening, setOpening] = useState<{ slug: string; x: number; y: number } | null>(null);
   const root = useRef<HTMLDivElement>(null);
   const progress = useRef<HTMLSpanElement>(null);
   const progressTween = useRef<gsap.core.Tween | null>(null);
 
   const move = (direction: 1 | -1) => {
     setActive((current) => (current + direction + featured.length) % featured.length);
+  };
+
+  const openProject = (slug: string, event: React.MouseEvent<HTMLButtonElement>) => {
+    setOpening({ slug, x: event.clientX, y: event.clientY });
+    window.setTimeout(() => {
+      window.location.assign(`/projects/${slug}`);
+    }, 520);
   };
 
   useEffect(() => {
@@ -73,10 +84,21 @@ export function FeaturedProjectsCarousel({
     progressTween.current?.paused(paused);
   }, [paused]);
 
+  useEffect(() => {
+    if (!pageMode || paused || featured.length < 2) return;
+    const id = window.setInterval(() => move(1), 4200);
+    return () => window.clearInterval(id);
+  }, [pageMode, paused, featured.length]);
+
   if (!featured.length) return null;
 
+  const offsetFor = (index: number) => {
+    const raw = (index - active + featured.length) % featured.length;
+    return raw > featured.length / 2 ? raw - featured.length : raw;
+  };
+
   return (
-    <section className={pageMode ? 'container py-16' : 'container py-12'} data-work>
+    <section className={pageMode ? 'container section-screen py-16' : 'container py-12'} data-work>
       {!pageMode && (
         <div className="mb-8 flex items-end justify-between gap-4">
           <div className="max-w-3xl">
@@ -91,66 +113,111 @@ export function FeaturedProjectsCarousel({
       )}
 
       {pageMode && (
-        <div className="mb-8 grid gap-4 md:grid-cols-[190px_1fr] md:items-end">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--faint)]">Trabajo</p>
+        <div data-section-head className="mb-8 grid gap-4 md:grid-cols-[0.7fr_1.3fr] md:items-end">
+          <h2 className="font-serif text-5xl leading-tight md:text-7xl">{title}</h2>
           <div>
-            <h2 className="font-serif text-5xl leading-tight md:text-7xl">Proyectos</h2>
-            <p className="mt-4 max-w-2xl text-lg text-[var(--muted)]">
-              Una selección navegable de productos, herramientas y experimentos backend.
+            <p className="max-w-2xl text-lg text-[var(--muted)]">
+              {intro ?? 'A navigable selection of distributed systems, cloud infrastructure labs, backend platforms and automation work.'}
             </p>
           </div>
         </div>
       )}
 
       {pageMode && (
-        <div className="grid gap-2 md:hidden">
-          {featured.map((project, index) => (
-            <a
-              key={project.slug}
-              href={`/projects/${project.slug}`}
-              className="grid grid-cols-[2.5ch_1fr] gap-4 border-t py-4"
-              style={{ borderColor: 'var(--border)' }}
-            >
-              <span className="font-mono text-xs text-[var(--faint)]">{String(index + 1).padStart(2, '0')}</span>
-              <span>
-                <span className="block font-serif text-2xl leading-tight text-[var(--text)]">{project.title}</span>
-                <span className="mt-2 block text-sm text-[var(--muted)]">{project.description}</span>
-              </span>
-            </a>
-          ))}
+        <div
+          className="relative min-h-[455px] overflow-hidden"
+          style={{ perspective: '1400px' }}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <div className="absolute inset-x-0 top-4 h-[460px]" style={{ transformStyle: 'preserve-3d' }}>
+            {featured.map((project, index) => {
+              const offset = offsetFor(index);
+              const depth = Math.abs(offset);
+              const isActive = offset === 0;
+              const visible = depth <= 3;
+              const transform = `
+                translateX(calc(-50% + ${offset * 205}px))
+                translateZ(${-depth * 120}px)
+                rotateY(${-offset * 28}deg)
+                scale(${1 - Math.min(depth, 3) * 0.08})
+              `;
+
+              return (
+                <article
+                  key={project.slug}
+                  className="project-orbit-card panel absolute left-1/2 top-0 flex aspect-[4/5] w-[min(82vw,360px)] flex-col overflow-hidden rounded-lg transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:aspect-[16/10] md:w-[min(86vw,500px)]"
+                  style={{
+                    transform,
+                    opacity: visible ? 1 : 0,
+                    zIndex: 20 - depth,
+                    pointerEvents: visible ? 'auto' : 'none',
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={(event) => isActive ? openProject(project.slug, event) : setActive(index)}
+                    className="group relative h-full overflow-hidden text-left"
+                    aria-label={isActive ? `Open ${project.title}` : `Focus ${project.title}`}
+                  >
+                    {project.image ? (
+                      <img src={project.image} alt={project.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" loading={index === active ? 'eager' : 'lazy'} />
+                    ) : (
+                      <span className="absolute inset-0 grid place-items-center bg-[var(--panel-2)] font-serif text-7xl text-[var(--accent)]">{project.title[0]}</span>
+                    )}
+                    <span className="absolute inset-0 bg-[linear-gradient(90deg,var(--bg)_0%,color-mix(in_srgb,var(--bg)_97%,transparent)_34%,color-mix(in_srgb,var(--bg)_78%,transparent)_58%,transparent_88%)]" />
+                    <span className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/35 to-transparent" />
+                    <span className="absolute left-5 top-5 font-mono text-[11px] text-[var(--faint)]">
+                      {String(index + 1).padStart(2, '0')} / {String(featured.length).padStart(2, '0')}
+                    </span>
+
+                    <span className="relative z-10 flex h-full w-[76%] flex-col justify-end p-6">
+                      <span className="font-mono text-xs capitalize text-[var(--faint)]">{formatDate(project.date)}</span>
+                      <span className="mt-3 block max-w-[13ch] overflow-hidden text-ellipsis whitespace-nowrap font-serif text-3xl leading-tight text-[var(--text)] md:max-w-[16ch]">{project.title}</span>
+                      <span className="mt-3 line-clamp-3 text-sm leading-relaxed text-[var(--muted)]">{projectDescription(project, lang)}</span>
+                      <span className="mt-5 flex flex-wrap gap-2">
+                        {project.tags.slice(0, 4).map((tag) => (
+                          <TechIcon key={tag} name={tag} />
+                        ))}
+                      </span>
+                      <span className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--accent)] opacity-80 transition group-hover:translate-x-1 group-hover:opacity-100">
+                        {ui[lang].openCase} <ArrowRight size={14} />
+                      </span>
+                    </span>
+                  </button>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="absolute inset-x-0 bottom-5 flex items-center justify-center gap-3">
+            <button type="button" onClick={() => move(-1)} className="grid h-11 w-11 place-items-center rounded-lg border text-[var(--muted)] transition hover:text-[var(--accent)]" style={{ borderColor: 'var(--border)' }} aria-label="Previous project">
+              <ArrowLeft size={18} />
+            </button>
+            <div className="flex min-w-36 items-center gap-3">
+              <span className="font-mono text-xs text-[var(--faint)]">{String(active + 1).padStart(2, '0')}</span>
+              <span className="h-px flex-1 bg-[var(--border)]" />
+              <span className="font-mono text-xs text-[var(--faint)]">{String(featured.length).padStart(2, '0')}</span>
+            </div>
+            <button type="button" onClick={() => move(1)} className="grid h-11 w-11 place-items-center rounded-lg border text-[var(--muted)] transition hover:text-[var(--accent)]" style={{ borderColor: 'var(--border)' }} aria-label="Next project">
+              <ArrowRight size={18} />
+            </button>
+          </div>
+
+          {opening && (
+            <span
+              className="project-open-ripple fixed z-[80] h-8 w-8 rounded-full bg-[var(--accent)]"
+              style={{ left: opening.x - 16, top: opening.y - 16 }}
+              aria-hidden="true"
+            />
+          )}
         </div>
       )}
 
-      <div className={pageMode ? 'hidden gap-6 md:grid md:grid-cols-[190px_1fr]' : ''}>
-        {pageMode && (
-          <aside className="hidden border-t pt-4 md:block" style={{ borderColor: 'var(--border)' }}>
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.18em] text-[var(--faint)]">Indice</p>
-            <div className="flex flex-col gap-1">
-              {featured.map((project, index) => (
-                <button
-                  key={project.slug}
-                  type="button"
-                  onClick={() => setActive(index)}
-                  className="group grid grid-cols-[2ch_1fr] gap-3 py-2 text-left"
-                >
-                  <span className="font-mono text-xs text-[var(--faint)]">{String(index + 1).padStart(2, '0')}</span>
-                  <span
-                    className="truncate text-sm transition group-hover:text-[var(--accent)]"
-                    style={{ color: active === index ? 'var(--accent)' : 'var(--muted)' }}
-                  >
-                    {project.title}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </aside>
-        )}
-
+      {!pageMode && (
       <div
         ref={root}
-        className={pageMode
-          ? 'panel flex overflow-hidden rounded-lg md:aspect-video'
-          : 'panel flex flex-col overflow-hidden rounded-lg'}
+        className="panel flex flex-col overflow-hidden rounded-lg"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -182,7 +249,7 @@ export function FeaturedProjectsCarousel({
               <div className={`flex flex-col ${pageMode ? 'pointer-events-none absolute inset-y-0 left-0 z-10 w-full justify-center px-6 py-7 md:w-[58%] md:px-10 md:py-8' : 'min-h-[420px] p-6 md:p-9'}`}>
                 {!pageMode && <p data-slide-copy className="font-mono text-xs capitalize text-[var(--faint)]">{formatDate(project.date)}</p>}
                 <h3 data-slide-copy className={`max-w-xl font-serif text-3xl leading-[1.06] ${pageMode ? 'md:text-[clamp(2.2rem,3.2vw,3.6rem)]' : 'md:text-6xl'}`}>{project.title}</h3>
-                <p data-slide-copy className="mt-4 max-w-lg text-sm leading-relaxed text-[var(--muted)] md:text-[0.95rem]">{project.description}</p>
+                <p data-slide-copy className="mt-4 max-w-lg text-sm leading-relaxed text-[var(--muted)] md:text-[0.95rem]">{projectDescription(project, lang)}</p>
 
                 <div data-slide-copy className="mt-5 flex flex-wrap gap-2">
                   {project.tags.slice(0, 6).map((tag) => <TechIcon key={tag} name={tag} />)}
@@ -190,7 +257,7 @@ export function FeaturedProjectsCarousel({
 
                 <div data-slide-copy className="pointer-events-auto mt-8 flex flex-wrap items-center gap-3">
                   <a href={`/projects/${project.slug}`} className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-4 py-3 text-sm font-medium text-white transition hover:-translate-y-0.5">
-                    Ver caso <ArrowRight size={17} />
+                    {ui[lang].openCase} <ArrowRight size={17} />
                   </a>
                   {project.github && (
                     <a href={project.github} target="_blank" rel="noreferrer" className="grid h-11 w-11 place-items-center rounded-lg border text-[var(--muted)] hover:text-[var(--accent)]" style={{ borderColor: 'var(--border)' }} title="GitHub">
@@ -227,7 +294,7 @@ export function FeaturedProjectsCarousel({
           ))}
         </div>
       </div>
-      </div>
+      )}
     </section>
   );
 }

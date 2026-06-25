@@ -1,57 +1,21 @@
 ---
 title: CrowShare
-description: A secure, temporary file-sharing application built on AWS with serverless architecture.
+description: A secure serverless file-sharing platform built around expiring links, AWS Lambda, S3 presigned URLs, Cognito authentication and Terraform-managed infrastructure.
 date: 2025-01-15
-tags: ['AWS', 'Terraform', 'React', 'Python', 'Lambda', 'Cognito', 'CloudFront']
+tags: ['AWS', 'Terraform', 'React', 'Python', 'Lambda', 'Cognito', 'CloudFront', 'S3']
 image: /images/projects/crowshare.png
 gitlab: https://gitlab.com/ericklopezdev/crowshare
 ---
 
 # CrowShare
 
-A secure, temporary file-sharing application built on AWS. Users can upload files and generate short-lived download links that expire after 24 hours.
+CrowShare is a secure serverless file-sharing platform for temporary access through expiring links. The project focuses on controlled file delivery, short-lived permissions, authentication and reproducible cloud infrastructure.
 
 ## Features
 
-- Temporary file sharing with 24-hour expiration links
-- Authentication via Cognito with Google OAuth support
-- Serverless architecture using AWS Lambda
-- React frontend hosted on CloudFront
-- Infrastructure as Code with Terraform
-
-## Architecture
-
-- **Frontend**: React application hosted on CloudFront
-- **Backend**: Python serverless functions on AWS Lambda
-- **Authentication**: AWS Cognito with Google OAuth integration
-- **Infrastructure**: Fully managed with Terraform
-
-## Tech Stack
-
-- **Frontend**: React, Node.js 16+
-- **Backend**: Python 3.9+, AWS Lambda
-- **Infrastructure**: Terraform 1.0+, AWS CLI
-- **Cloud Services**: AWS Cognito, CloudFront, API Gateway, S3
-
-## Quick Start
-
-1. **Backend & Infrastructure (Terraform)**
-   ```bash
-   cd infra
-   terraform init
-   terraform apply
-   ```
-
-2. **Frontend Setup**
-   ```bash
-   cd frontend
-   npm install
-   ```
-
-3. **Connect Frontend to Backend**
-   Update `frontend/src/App.jsx` with the API Gateway endpoint from Terraform output.
-
-4. **Run Locally**
-   ```bash
-   npm run dev
-   ```
+- Temporary file sharing with expiring links
+- Python backend with AWS Lambda and API Gateway
+- Secure storage with Amazon S3 and presigned URLs
+- Authentication through AWS Cognito and Google OAuth
+- React frontend distributed through CloudFront
+- Infrastructure defined with Terraform

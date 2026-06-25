@@ -47,11 +47,15 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 4rem;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 86% 8%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 28rem),
     radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--accent-2) 13%, transparent), transparent 24rem),
@@ -128,7 +132,7 @@ button {
 }
 
 .tool-marquee {
-  animation: tool-marquee 28s linear infinite;
+  animation: tool-marquee 34s linear infinite;
 }
 
 .tool-marquee:hover {
@@ -140,11 +144,29 @@ button {
   to { transform: translateX(-50%); }
 }
 
+.project-open-ripple {
+  animation: project-open-ripple 0.56s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes project-open-ripple {
+  from {
+    opacity: 0.92;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(90);
+  }
+}
+
 .section-screen {
   min-height: calc(100vh - 4rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin-top: 4rem;
 }
 
 .prose {

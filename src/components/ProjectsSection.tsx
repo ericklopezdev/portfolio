@@ -8,15 +8,15 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
     <section id="proyectos" className="container py-16 md:py-24">
       <div className="mb-10 grid gap-4 md:grid-cols-[0.7fr_1.3fr] md:items-end">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--faint)]">Trabajo</p>
-          <h2 className="mt-3 font-serif text-4xl leading-tight md:text-6xl">Proyectos</h2>
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--faint)]">Work</p>
+          <h2 className="mt-3 font-serif text-4xl leading-tight md:text-6xl">Projects</h2>
         </div>
         <div>
           <p className="max-w-2xl text-lg text-[var(--muted)]">
-            Una selección de productos, automatizaciones y plataformas. El archivo completo vive como carrusel horizontal.
+            A selection of distributed systems, cloud infrastructure labs, backend platforms and automation work.
           </p>
           <a href="/projects" className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)]">
-            Abrir carrusel <ArrowRight size={16} />
+            Open carousel <ArrowRight size={16} />
           </a>
         </div>
       </div>

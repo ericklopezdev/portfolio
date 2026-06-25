@@ -1,31 +1,44 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CertificationsSection } from '../components/CertificationsSection';
 import { ExperienceSection } from '../components/ExperienceSection';
 import { FeaturedProjectsCarousel } from '../components/FeaturedProjectsCarousel';
 import { SpecialtyScroll } from '../components/SpecialtyScroll';
 import { StackBand } from '../components/StackBand';
+import { TechIcon } from '../components/TechIcon';
+import { ui, type Lang } from '../data/i18n';
 import { site } from '../data/site';
 import type { Certification, Experience, Project } from '../lib/content';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const stack = ['Backend', 'Fintech', 'Sistemas distribuidos', 'Cloud Security', 'DevSecOps'];
+const heroTools = [
+  'Java', 'Go', 'Python', 'SQL', 'Docker', 'Kubernetes', 'Terraform',
+  'AWS', 'Azure', 'GCP', 'Prometheus', 'Grafana', 'Datadog',
+];
 
-export function HomePage({ projects, experiences, certifications }: { projects: Project[]; experiences: Experience[]; certifications: Certification[] }) {
+export function HomePage({ projects, experiences, certifications, lang }: { projects: Project[]; experiences: Experience[]; certifications: Certification[]; lang: Lang }) {
   const root = useRef<HTMLDivElement>(null);
+  const [toolTip, setToolTip] = useState<{ name: string; x: number; y: number } | null>(null);
+
+  const showToolTip = (name: string, element: HTMLElement) => {
+    const rect = element.getBoundingClientRect();
+    setToolTip({
+      name,
+      x: rect.left + rect.width / 2,
+      y: rect.top - 8,
+    });
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from('[data-name-char]', {
         opacity: 0,
-        yPercent: 55,
-        rotateX: -72,
-        transformOrigin: '50% 100%',
-        stagger: 0.028,
-        duration: 0.72,
+        y: 18,
+        filter: 'blur(6px)',
+        duration: 0.65,
         ease: 'power3.out',
       });
       gsap.from('[data-hero]', { opacity: 0, y: 22, stagger: 0.08, duration: 0.68, delay: 0.18, ease: 'power3.out' });
@@ -36,6 +49,66 @@ export function HomePage({ projects, experiences, certifications }: { projects: 
         stagger: 0.08,
         ease: 'power3.out',
         scrollTrigger: { trigger: '[data-work]', start: 'top 78%' },
+      });
+
+      gsap.utils.toArray<HTMLElement>('.section-screen').slice(1).forEach((section) => {
+        gsap.fromTo(
+          section,
+          { opacity: 0.72, y: 48, scale: 0.985 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.85,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 82%',
+              end: 'top 42%',
+              scrub: 0.45,
+            },
+          },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>('[data-section-head]').forEach((head) => {
+        gsap.fromTo(
+          head.children,
+          { opacity: 0, y: 34, filter: 'blur(8px)' },
+          {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            stagger: 0.08,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: head,
+              start: 'top 82%',
+              toggleActions: 'play none none reverse',
+            },
+          },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>('[data-section-item]').forEach((item, index) => {
+        gsap.fromTo(
+          item,
+          { opacity: 0, x: index % 2 === 0 ? -34 : 34, y: 18, filter: 'blur(7px)' },
+          {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 0.68,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: item,
+              start: 'top 86%',
+              toggleActions: 'play none none reverse',
+            },
+          },
+        );
       });
     }, root);
     return () => ctx.revert();
@@ -49,35 +122,44 @@ export function HomePage({ projects, experiences, certifications }: { projects: 
         </div>
 
         <div className="relative z-10 max-w-5xl">
-          <p data-hero className="mb-6 font-mono text-xs uppercase tracking-[0.22em] text-[var(--accent)]">Backend / Distributed Systems / Cloud Security</p>
-          <h1 className="raster-text font-serif text-[clamp(3.6rem,10vw,8.8rem)] leading-[0.84] tracking-normal" aria-label={site.fullName}>
-              {Array.from(site.fullName).map((char, index) => (
+          <p data-hero className="mb-6 font-mono text-xs uppercase tracking-[0.22em] text-[var(--accent)]">Backend / Cloud Infrastructure / Distributed Systems / Operations</p>
+          <h1 className="font-serif text-[clamp(3rem,8.2vw,7.2rem)] leading-[0.88] tracking-normal" aria-label={site.fullName}>
+            <span data-name-char className="inline-block max-w-full whitespace-nowrap align-bottom">{site.fullName}</span>
+          </h1>
+          <p data-hero className="mt-7 max-w-3xl text-lg leading-relaxed text-[var(--muted)] md:text-xl">
+            {ui[lang].heroBio}
+          </p>
+          
+          <div data-hero className="mt-8 max-w-xl overflow-hidden py-1">
+            <div className="tool-marquee flex w-max gap-2">
+              {[...heroTools, ...heroTools].map((item, index) => (
                 <span
-                  key={`${char}-${index}`}
-                  data-name-char
-                  aria-hidden="true"
-                  className="inline-block will-change-transform"
+                  key={`${item}-${index}`}
+                  onMouseEnter={(event) => showToolTip(item, event.currentTarget)}
+                  onMouseMove={(event) => showToolTip(item, event.currentTarget)}
+                  onMouseLeave={() => setToolTip(null)}
+                  onFocus={(event) => showToolTip(item, event.currentTarget)}
+                  onBlur={() => setToolTip(null)}
                 >
-                  {char === ' ' ? '\u00a0' : char}
+                  <TechIcon name={item} size="hero" tone="mono" framed={false} />
                 </span>
               ))}
-            </h1>
-          <p data-hero className="mt-8 max-w-3xl text-xl leading-relaxed text-[var(--muted)] md:text-2xl">
-            Backend engineer enfocado en sistemas distribuidos, fintech y cloud security. Construyo servicios limpios, observables y seguros para productos que necesitan confianza.
-          </p>
-          <div data-hero className="mt-8 flex flex-wrap gap-2">
-            {stack.map((item) => (
-              <span key={item} className="rounded-full border px-3 py-1.5 font-mono text-xs uppercase tracking-[0.12em] text-[var(--muted)]" style={{ borderColor: 'var(--border)' }}>
-                {item}
-              </span>
-            ))}
+            </div>
           </div>
+          {toolTip && (
+            <span
+              className="pointer-events-none fixed z-[100] -translate-x-1/2 -translate-y-full rounded-md border px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.14em] shadow-lg"
+              style={{ left: toolTip.x, top: toolTip.y, borderColor: 'var(--border)', background: 'var(--panel)', color: 'var(--text)' }}
+            >
+              {toolTip.name}
+            </span>
+          )}
           <div data-hero className="mt-10 flex flex-wrap items-center gap-3">
-            <a href="/projects" className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-4 py-3 font-medium text-white transition hover:-translate-y-0.5">
-              Ver proyectos <ArrowRight size={18} />
+            <a href="#proyectos" className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-4 py-3 font-medium text-white transition hover:-translate-y-0.5">
+              {ui[lang].viewProjects} <ArrowRight size={18} />
             </a>
             <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 rounded-lg border px-4 py-3 font-medium text-[var(--text)] transition hover:bg-[var(--panel-2)]" style={{ borderColor: 'var(--border)' }}>
-              <Mail size={18} /> Contacto
+              <Mail size={18} /> {ui[lang].contact}
             </a>
             <a href={site.socials.github} target="_blank" rel="noreferrer" className="grid h-12 w-12 place-items-center rounded-lg border text-[var(--muted)] hover:text-[var(--accent)]" style={{ borderColor: 'var(--border)' }} title="GitHub">
               <Github size={18} />
@@ -90,10 +172,10 @@ export function HomePage({ projects, experiences, certifications }: { projects: 
       </section>
 
       <div id="especialidades">
-        <SpecialtyScroll />
+        <SpecialtyScroll lang={lang} />
       </div>
 
-      <ExperienceSection experiences={experiences} />
+      <ExperienceSection experiences={experiences} lang={lang} />
 
       <div id="proyectos">
         <FeaturedProjectsCarousel
@@ -101,15 +183,16 @@ export function HomePage({ projects, experiences, certifications }: { projects: 
           limit={projects.length}
           pageMode
           showViewAll={false}
-          eyebrow="Trabajo"
-          title="Proyectos"
-          intro="Explora los proyectos como un carrusel de pantalla completa: backend, automatizacion, cloud y productos fullstack."
+          eyebrow="Work"
+          title={ui[lang].projectsTitle}
+          intro={ui[lang].projectIntro}
+          lang={lang}
         />
       </div>
 
-      <CertificationsSection certifications={certifications} compact />
+      <CertificationsSection certifications={certifications} lang={lang} />
 
-      <StackBand />
+      <StackBand lang={lang} />
     </div>
   );
 }
