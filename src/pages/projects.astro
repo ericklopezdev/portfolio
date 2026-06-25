@@ -1,10 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import ProjectItem from '../components/ProjectItem.astro';
 import { getCollection } from 'astro:content';
 
-const projects = (await getCollection('projects')).sort(
+const sorted = (await getCollection('projects')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const projects = await Promise.all(
+  sorted.map(async (p) => ({ ...p, Content: (await p.render()).Content })),
 );
 ---
 
@@ -16,12 +19,13 @@ const projects = (await getCollection('projects')).sort(
       <p class="intro">
         Una selección de productos que he construido — desde herramientas CLI
         y arquitecturas serverless hasta plataformas fullstack para negocios reales.
+        <span class="hint">Haz click en cualquiera para ver el detalle completo.</span>
       </p>
     </header>
 
     <div class="grid">
       {projects.map((p, i) => (
-        <ProjectCard
+        <ProjectItem
           slug={p.slug}
           title={p.data.title}
           description={p.data.description}
@@ -31,19 +35,25 @@ const projects = (await getCollection('projects')).sort(
           github={p.data.github}
           demo={p.data.demo}
           index={i}
-        />
+        >
+          <p.Content slot="detail" />
+        </ProjectItem>
       ))}
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .head { max-width: 60ch; margin-bottom: 3rem; }
-  .head h1 {
-    font-size: clamp(2.4rem, 6vw, 3.4rem);
-    margin: 0.6rem 0 1rem;
-  }
+  .head { max-width: 62ch; margin-bottom: 3rem; }
+  .head h1 { font-size: clamp(2.4rem, 6vw, 3.4rem); margin: 0.6rem 0 1rem; }
   .intro { color: var(--text-muted); font-size: 1.05rem; }
+  .hint {
+    display: block;
+    margin-top: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-faint);
+  }
 
   .grid {
     display: grid;

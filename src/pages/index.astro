@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import TechIcon from '../components/TechIcon.astro';
+import NodeMesh from '../components/NodeMesh.astro';
+import Specialization from '../components/Specialization.astro';
+import StackBand from '../components/StackBand.astro';
 import { getCollection } from 'astro:content';
 import { site } from '../data/site';
 
@@ -18,7 +21,9 @@ const stack = ['Go', 'Python', 'AWS', 'GCP', 'Terraform', 'Docker', 'Linux', 'RA
 
 <BaseLayout>
   <!-- Hero -->
-  <section class="container hero">
+  <section class="hero-section">
+    <NodeMesh />
+    <div class="container hero">
     {site.available && (
       <p class="status reveal">
         <span class="dot"></span> Disponible para nuevas oportunidades
@@ -45,6 +50,7 @@ const stack = ['Go', 'Python', 'AWS', 'GCP', 'Terraform', 'Docker', 'Linux', 'RA
     <ul class="stack reveal" style="animation-delay:300ms">
       {stack.map((s) => <li><TechIcon name={s} /></li>)}
     </ul>
+    </div>
   </section>
 
   <!-- Quick stats -->
@@ -88,10 +94,21 @@ const stack = ['Go', 'Python', 'AWS', 'GCP', 'Terraform', 'Docker', 'Linux', 'RA
 
     <a href="/projects" class="link-arrow more">Ver todos los proyectos <span class="arr">→</span></a>
   </section>
+
+  <Specialization />
+
+  <StackBand />
 </BaseLayout>
 
 <style>
+  .hero-section {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
   .hero {
+    position: relative;
+    z-index: 1;
     padding-top: 4rem;
     padding-bottom: 4.5rem;
     max-width: 880px;

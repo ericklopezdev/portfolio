@@ -1,0 +1,37 @@
+---
+import TechIcon from './TechIcon.astro';
+
+const stack = [
+  'Kubernetes', 'Docker', 'Terraform', 'AWS', 'GCP', 'Linux',
+  'Go', 'Python', 'Helm', 'Kafka', 'Redis', 'PostgreSQL',
+  'Prometheus', 'Grafana', 'Nginx', 'Ansible',
+];
+---
+
+<section class="container band">
+  <div class="band-inner">
+    <p class="eyebrow">Stack & tooling</p>
+    <div class="logos">
+      {stack.map((t) => <TechIcon name={t} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .band { padding-top: 1rem; padding-bottom: 3.5rem; }
+  .band-inner {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-elevated);
+    padding: 1.8rem 1.8rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .eyebrow { margin-bottom: 1.2rem; }
+  .logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+</style>
