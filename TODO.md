@@ -1,0 +1,27 @@
+# TODO - React Refactor
+
+- [x] Crear rama `refactor/react`.
+- [x] Reemplazar Astro por React + Vite.
+- [x] Instalar Tailwind CSS, GSAP, lucide-react y dependencias React.
+- [x] Mantener el contenido existente desde Markdown.
+- [x] Crear loader para proyectos, experiencia y certificaciones.
+- [x] Migrar navegación, footer, tema claro/oscuro y páginas principales.
+- [x] Rehacer tech icons como iconos compactos con nombre en hover.
+- [x] Agregar animaciones GSAP y escena 3D visual para backend/cloud.
+- [x] Cambiar hero a una versión minimalista con nombre, descripción y especialidades animadas por scroll.
+- [x] Aplicar tipografía editorial estilo Claude en la UI.
+- [x] Rediseñar proyectos destacados como carrusel horizontal grande con autoplay y progreso.
+- [x] Mover la experiencia de carrusel al page completo de proyectos.
+- [x] Convertir `/projects` en slide full-page sin card padre ni footer.
+- [x] Preparar navegación principal con anclas hacia una experiencia single-page.
+- [x] Rediseñar certificaciones con estilo minimalista y mostrarlas en home.
+- [x] Hacer header transparente, sin fondo ni bordes.
+- [x] Integrar experiencia, proyectos y certificaciones como secciones por ancla en home.
+- [x] Restaurar proyectos como carrusel de alto viewport dentro del home.
+- [x] Crear rama experimental `experiment/dark-editorial`.
+- [x] Aplicar prueba visual dark editorial con raster/scanlines doradas.
+- [x] Volver a `refactor/react` dejando solo nombre raster e imagen lateral.
+- [x] Mejorar tools con banda animada.
+- [ ] Revisar copy final y URLs reales de cada proyecto.
+- [ ] Agregar fallback de rutas para hosting si se publica como SPA.
+- [ ] Validar visualmente en desktop y mobile antes de deploy.

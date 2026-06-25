@@ -1,46 +1,30 @@
-# Astro Starter Kit: Basics
+# Erick Lopez Portfolio
 
-```sh
-npm create astro@latest -- --template basics
+Portfolio personal migrado a React con una UI orientada a backend, cloud security y DevSecOps.
+
+## Stack
+
+- React + Vite
+- Tailwind CSS
+- GSAP
+- lucide-react
+- simple-icons
+- Markdown como fuente de contenido
+
+## Scripts
+
+```bash
+npm run dev
+npm run build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Contenido
 
-## 🚀 Project Structure
+Los proyectos, experiencia y certificaciones se mantienen en:
 
-Inside of your Astro project, you'll see the following folders and files:
+- `src/content/projects`
+- `src/content/experience`
+- `src/content/certifications`
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+El loader React esta en `src/lib/content.ts`.

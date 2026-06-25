@@ -3,6 +3,9 @@ import {
   siExpress, siPrisma, siMongodb, siGooglecloud, siGooglegemini, siMqtt,
   siTerraform, siReact, siPython, siNodedotjs, siPostgresql, siSpringboot,
   siDocker, siLinux, siOpenjdk, siSst, siJest, siYoutube, siSpotify,
+  siKubernetes, siHelm, siRedis, siRabbitmq, siApachekafka, siNginx,
+  siGrafana, siPrometheus, siGithubactions, siIstio, siVault, siAnsible,
+  siGraphql, siFastapi, siGit, siCloudflare, siOpentelemetry,
 } from 'simple-icons';
 
 export interface TechDef {
@@ -77,6 +80,28 @@ export const TECH: Record<string, TechDef> = {
   // VCS
   'github': ic(siGithub, { hexDark: '#FFFFFF' }),
   'gitlab': ic(siGitlab),
+  'git': ic(siGit),
+
+  // Distributed systems / infra / DevOps
+  'kubernetes': ic(siKubernetes),
+  'k8s': ic(siKubernetes, { label: 'Kubernetes' }),
+  'helm': ic(siHelm, { hexDark: '#7B8CF0' }),
+  'redis': ic(siRedis),
+  'rabbitmq': ic(siRabbitmq, { label: 'RabbitMQ' }),
+  'kafka': ic(siApachekafka, { label: 'Kafka', hexDark: '#FFFFFF' }),
+  'nginx': ic(siNginx),
+  'grafana': ic(siGrafana),
+  'prometheus': ic(siPrometheus),
+  'github actions': ic(siGithubactions, { label: 'GH Actions' }),
+  'githubactions': ic(siGithubactions, { label: 'GH Actions' }),
+  'ci/cd': ic(siGithubactions, { label: 'CI/CD' }),
+  'istio': ic(siIstio),
+  'vault': ic(siVault, { hexDark: '#FFEC6E' }),
+  'ansible': ic(siAnsible),
+  'graphql': ic(siGraphql),
+  'fastapi': ic(siFastapi, { label: 'FastAPI' }),
+  'cloudflare': ic(siCloudflare),
+  'opentelemetry': ic(siOpentelemetry, { label: 'OTel', hexDark: '#FFFFFF' }),
 };
 
 export function getTech(name: string): TechDef | undefined {
