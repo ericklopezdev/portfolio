@@ -1,4 +1,5 @@
 import { ExternalLink } from 'lucide-react';
+import { ui, type Lang } from '../data/i18n';
 import type { Certification } from '../lib/content';
 
 const issuerColor: Record<string, string> = {
@@ -10,20 +11,20 @@ const issuerColor: Record<string, string> = {
 interface CertificationsSectionProps {
   certifications: Certification[];
   compact?: boolean;
+  lang: Lang;
 }
 
-export function CertificationsSection({ certifications, compact = false }: CertificationsSectionProps) {
+export function CertificationsSection({ certifications, compact = false, lang }: CertificationsSectionProps) {
   const visible = compact ? certifications.slice(0, 6) : certifications;
 
   return (
-    <section id="certificaciones" className={`container ${compact ? 'section-screen py-16' : 'py-8'}`}>
-      <div className="mb-10 grid gap-4 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+    <section id="certificaciones" className="container section-screen py-16">
+      <div data-section-head className="mb-10 grid gap-4 md:grid-cols-[0.8fr_1.2fr] md:items-end">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--accent)]">Credenciales</p>
-          <h2 className="mt-3 font-serif text-5xl leading-tight md:text-7xl">Certificaciones</h2>
+          <h2 className="font-serif text-5xl leading-tight md:text-5xl">{ui[lang].certificationsTitle}</h2>
         </div>
         <p className="max-w-2xl text-lg text-[var(--muted)]">
-          Validaciones en cloud, redes y sistemas Linux. Las muestro como parte del sistema, no como badges decorativos.
+          {ui[lang].certificationsIntro}
         </p>
       </div>
 
@@ -31,26 +32,29 @@ export function CertificationsSection({ certifications, compact = false }: Certi
         {visible.map((cert) => (
           <a
             key={cert.slug}
+            data-section-item
             href={cert.link}
             target="_blank"
             rel="noreferrer"
-            className="group grid gap-4 border-b py-5 transition hover:bg-[color-mix(in_srgb,var(--panel)_46%,transparent)] md:grid-cols-[76px_1fr_auto] md:items-center"
+            className="group grid grid-cols-[76px_1fr] gap-4 border-b py-5 transition hover:bg-[color-mix(in_srgb,var(--panel)_46%,transparent)] md:grid-cols-[76px_1fr_auto] md:items-center"
             style={{ borderColor: 'var(--border)' }}
           >
-            <span className="flex items-center gap-3 md:block">
-              <span className="grid h-16 w-16 place-items-center overflow-hidden rounded-lg border bg-[var(--panel)]" style={{ borderColor: 'var(--border)' }}>
-                {cert.image ? (
-                  <img src={cert.image} alt={cert.title} className="h-full w-full object-contain p-1.5" loading="lazy" />
-                ) : (
-                  <ExternalLink size={22} className="text-[var(--muted)]" />
-                )}
-              </span>
-              <span className="font-mono text-xs text-[var(--faint)] md:hidden">{cert.date}</span>
+            <span className="block">
+              {cert.image ? (
+                <img src={cert.image} alt={cert.title} className="h-16 w-16 object-contain" loading="lazy" />
+              ) : (
+                <span className="grid h-16 w-16 place-items-center text-[var(--muted)]">
+                  <ExternalLink size={22} />
+                </span>
+              )}
             </span>
 
             <span className="min-w-0">
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.16em]" style={{ color: issuerColor[cert.issuer] ?? 'var(--accent)' }}>
-                {cert.issuer}
+              <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.16em]" style={{ color: issuerColor[cert.issuer] ?? 'var(--accent)' }}>
+                  {cert.issuer}
+                </span>
+                <span className="font-mono text-xs text-[var(--faint)] md:hidden">{cert.date}</span>
               </span>
               <span className="mt-2 block font-serif text-2xl leading-tight text-[var(--text)] group-hover:text-[var(--accent)]">
                 {cert.title}
@@ -65,11 +69,6 @@ export function CertificationsSection({ certifications, compact = false }: Certi
         ))}
       </div>
 
-      {compact && certifications.length > visible.length && (
-        <a href="/certifications" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)]">
-          Ver todas <ExternalLink size={15} />
-        </a>
-      )}
     </section>
   );
 }

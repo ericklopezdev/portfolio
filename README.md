@@ -1,6 +1,6 @@
 # Erick Lopez Portfolio
 
-Portfolio personal migrado a React con una UI orientada a backend, cloud security y DevSecOps.
+Personal portfolio focused on backend engineering, distributed systems, fintech-oriented software and cloud infrastructure.
 
 ## Stack
 

@@ -1,6 +1,6 @@
 ---
 title: RacoonsFinds - Plataforma E-Commerce
-description: Una plataforma escalable de e-commerce construida con arquitectura monolítica, manejando alto tráfico y gestión de inventario en tiempo real.
+description: A Java and Spring Boot commerce platform focused on catalog, account, inventory and transactional backend flows.
 date: 2023-07-20
 tags: ['Springboot', 'Java', 'Angular']
 image: /images/projects/racoonsfinds.png
@@ -10,21 +10,11 @@ demo: https://racoonsfinds.shop
 
 # Plataforma E-Commerce RacoonsFinds
 
-Plataforma e-commerce como solución segura para personas de mi localidad, ofreciendo compras en línea confiables y eficientes.
+A Java and Spring Boot commerce platform focused on catalog, account, inventory and transactional backend flows. The project maps well to financial-system concerns such as data consistency, user accounts and auditable operations.
 
-## Características
+## Caracteristicas
 
-- Autenticación y autorización de usuarios
-- Catálogo de productos con búsqueda y filtrado
-- Carrito de compras y proceso de checkout
-- Gestión y seguimiento de pedidos
-- Actualizaciones de inventario en tiempo real
-- Integración con pasarelas de pago
-
-## Tecnologías
-
-- Backend: Spring Boot, Java
-- Frontend: Angular
-- Arquitectura: Monolítica
-- Orquestación: Docker
-- Despliegue: AWS EC2
+- User authentication and authorization
+- Product catalog and search flows
+- Inventory-oriented backend logic
+- Transactional operations for online purchases

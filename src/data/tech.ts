@@ -6,6 +6,7 @@ import {
   siKubernetes, siHelm, siRedis, siRabbitmq, siApachekafka, siNginx,
   siGrafana, siPrometheus, siGithubactions, siIstio, siVault, siAnsible,
   siGraphql, siFastapi, siGit, siCloudflare, siOpentelemetry,
+  siMysql, siDatadog, siSplunk, siGnubash,
 } from 'simple-icons';
 
 export interface TechDef {
@@ -28,6 +29,9 @@ const ic = (i: SI, over: Partial<TechDef> = {}): TechDef => ({
 const CLOUD =
   'M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z';
 const aws = (label: string): TechDef => ({ label, path: CLOUD, hex: '#FF9900' });
+const azure = (label = 'Azure'): TechDef => ({ label, path: CLOUD, hex: '#0078D4', hexDark: '#48A7F8' });
+const DATABASE =
+  'M12 2C7.03 2 3 3.79 3 6v12c0 2.21 4.03 4 9 4s9-1.79 9-4V6c0-2.21-4.03-4-9-4Zm0 2c4.42 0 7 1.39 7 2s-2.58 2-7 2-7-1.39-7-2 2.58-2 7-2Zm0 16c-4.42 0-7-1.39-7-2v-2.1C6.6 16.83 9.17 17.25 12 17.25s5.4-.42 7-1.35V18c0 .61-2.58 2-7 2Zm0-4.75c-4.42 0-7-1.39-7-2v-2.1c1.6.93 4.17 1.35 7 1.35s5.4-.42 7-1.35v2.1c0 .61-2.58 2-7 2Z';
 
 /* Keys are normalized (lowercase, trimmed). Aliases point to the same icon. */
 export const TECH: Record<string, TechDef> = {
@@ -37,6 +41,7 @@ export const TECH: Record<string, TechDef> = {
   'python': ic(siPython),
   'typescript': ic(siTypescript),
   'ts': ic(siTypescript, { label: 'TypeScript' }),
+  'bash': ic(siGnubash, { label: 'Bash', hexDark: '#FFFFFF' }),
   'java': ic(siOpenjdk, { label: 'Java', hex: '#E76F00', hexDark: '#F89820' }),
   'html': ic(siHtml5, { label: 'HTML' }),
   'css': ic(siCss, { label: 'CSS' }),
@@ -55,12 +60,17 @@ export const TECH: Record<string, TechDef> = {
 
   // Data
   'mongodb': ic(siMongodb),
+  'mysql': ic(siMysql, { label: 'MySQL' }),
   'postgres': ic(siPostgresql, { label: 'Postgres' }),
   'postgresql': ic(siPostgresql),
+  'sql': { label: 'SQL', path: DATABASE, hex: '#336791', hexDark: '#6EA8D9' },
+  'vector databases': { label: 'Vector DBs', path: DATABASE, hex: '#7057FF', hexDark: '#A794FF' },
   'prisma': ic(siPrisma, { hexDark: '#7B85F0' }),
 
   // Cloud / infra
   'aws': aws('AWS'),
+  'azure': azure(),
+  'microsoft azure': azure(),
   'lambda': aws('Lambda'),
   'cognito': aws('Cognito'),
   'cloudfront': aws('CloudFront'),
@@ -95,6 +105,7 @@ export const TECH: Record<string, TechDef> = {
   'github actions': ic(siGithubactions, { label: 'GH Actions' }),
   'githubactions': ic(siGithubactions, { label: 'GH Actions' }),
   'ci/cd': ic(siGithubactions, { label: 'CI/CD' }),
+  'azure devops': azure('Azure DevOps'),
   'istio': ic(siIstio),
   'vault': ic(siVault, { hexDark: '#FFEC6E' }),
   'ansible': ic(siAnsible),
@@ -102,6 +113,13 @@ export const TECH: Record<string, TechDef> = {
   'fastapi': ic(siFastapi, { label: 'FastAPI' }),
   'cloudflare': ic(siCloudflare),
   'opentelemetry': ic(siOpentelemetry, { label: 'OTel', hexDark: '#FFFFFF' }),
+  'datadog': ic(siDatadog, { label: 'Datadog', hexDark: '#9A5DFD' }),
+  'splunk': ic(siSplunk, { label: 'Splunk', hexDark: '#FFFFFF' }),
+  'cloud run': ic(siGooglecloud, { label: 'Cloud Run' }),
+  'rag': ic(siGooglegemini, { label: 'RAG' }),
+  'iot': ic(siMqtt, { label: 'IoT' }),
+  'esp32': ic(siMqtt, { label: 'ESP32' }),
+  'networking': { label: 'Networking', path: CLOUD, hex: '#14B8A6' },
 };
 
 export function getTech(name: string): TechDef | undefined {

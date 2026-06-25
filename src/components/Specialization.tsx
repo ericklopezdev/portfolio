@@ -1,18 +1,18 @@
 import { Boxes, CloudCog, Network, ShieldCheck } from 'lucide-react';
 
 const capabilities = [
-  { title: 'Sistemas Distribuidos', desc: 'Servicios desacoplados, colas de mensajes y consistencia eventual para sistemas que escalan.', Icon: Network },
-  { title: 'Backend Engineering', desc: 'APIs REST y gRPC seguras, modelado de datos y arquitecturas limpias sobre Go, Java y Python.', Icon: Boxes },
-  { title: 'Kubernetes & DevOps', desc: 'Contenedores, despliegues declarativos, IaC con Terraform y pipelines CI/CD reproducibles.', Icon: CloudCog },
-  { title: 'Cloud Security', desc: 'IAM de minimo privilegio, secretos gestionados, hardening y enfoque DevSecOps en AWS y GCP.', Icon: ShieldCheck },
+  { title: 'Backend Systems', desc: 'REST APIs, modular services, authentication, authorization and data flows designed for maintainability.', Icon: Network },
+  { title: 'Distributed Architecture', desc: 'Microservices, asynchronous processing, event-driven communication and failure-aware system design.', Icon: Boxes },
+  { title: 'Cloud Infrastructure', desc: 'Kubernetes, Terraform, containers, CI/CD and reproducible environments across AWS, Azure and GCP.', Icon: CloudCog },
+  { title: 'Production Operations', desc: 'Observability, logs, metrics, resource analysis and deployment troubleshooting in real environments.', Icon: ShieldCheck },
 ];
 
 export function Specialization() {
   return (
     <section className="container py-12">
       <div className="mb-8 flex items-baseline gap-3">
-        <h2 className="font-serif text-4xl">Especializacion</h2>
-        <span className="font-mono text-xs text-[var(--faint)]">// distributed backend</span>
+        <h2 className="font-serif text-4xl">Focus areas</h2>
+        <span className="font-mono text-xs text-[var(--faint)]">// backend + cloud systems</span>
       </div>
       <div className="grid gap-4 md:grid-cols-4">
         {capabilities.map(({ title, desc, Icon }) => (
